@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, {useState, useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
+import axios from "axios"
+import Navbar from "../components/Navbar"
 
 function AddBeerPage() {
   const [name, setName] = useState("");
@@ -10,30 +12,29 @@ function AddBeerPage() {
   const [attenuationLevel, setAttenuationLevel] = useState("");
   const [contributedBy, setContributedBy] = useState("");
 
+  const navigate = useNavigate()
+
   function handleSubmit(e) {
     e.preventDefault();
 
-    const newBeer = {
-      name: name,
-      tagline: tagline,
-      description: description,
-      firstBrewed: firstBrewed,
-      brewerTip: brewerTip,
-      attenuationLevel: attenuationLevel,
-      contributedBy: contributedBy,
-    };
+    const newBeer = {name: name,tagline: tagline,description: description,firstBrewed: firstBrewed,brewerTip: brewerTip,attenuationLevel: attenuationLevel,contributedBy: contributedBy}
 
-    axios.post("https://ih-beers-api2.herokuapp.com/beers", newBeer);
-  }
+    axios.post("https://ih-beers-api2.herokuapp.com/beers/new", newBeer).then(()=>{
+      navigate('/beers')
+    })
+    .catch(()=>{
+
+    })
+    }
 
   return (
     <div className="AddBeerPage">
-      <h1>Add New Beer</h1>
-
-      <form onSubmit={handleSubmit}>
+    <Navbar/>
+     <form onSubmit={handleSubmit}>
         <label>
           Name
-          <input
+          <input 
+          name="name"
             type="text"
             onChange={(e) => {
               setName(e.target.value);
@@ -44,6 +45,7 @@ function AddBeerPage() {
         <label>
           Tagline
           <input
+          name="tagline"
             type="text"
             onChange={(e) => {
               setTagline(e.target.value);
@@ -54,6 +56,7 @@ function AddBeerPage() {
         <label>
           Description
           <textarea
+          name="description"
             type="text"
             onChange={(e) => {
               setDescription(e.target.value);
@@ -64,6 +67,7 @@ function AddBeerPage() {
         <label>
           First Brewed
           <input
+          name="first_brewed"
             type="text"
             onChange={(e) => {
               setFirstBrewed(e.target.value);
@@ -74,6 +78,7 @@ function AddBeerPage() {
         <label>
           Brewer's Tips
           <input
+          name="brewers_tips"
             type="text"
             onChange={(e) => {
               setBrewerTip(e.target.value);
@@ -84,7 +89,8 @@ function AddBeerPage() {
         <label>
           Attenuation Level
           <input
-            type="text"
+          name="attenuation_level"
+            type="number"
             onChange={(e) => {
               setAttenuationLevel(e.target.value);
             }}
@@ -94,6 +100,7 @@ function AddBeerPage() {
         <label>
           Contributed By
           <input
+          name="contributed_by"
             type="text"
             onChange={(e) => {
               setContributedBy(e.target.value);
@@ -101,7 +108,9 @@ function AddBeerPage() {
           />
         </label>
 
-        <button>Add Beer</button>
+        <button type= "submit">
+        Add Beer
+        </button>
       </form>
     </div>
   );
