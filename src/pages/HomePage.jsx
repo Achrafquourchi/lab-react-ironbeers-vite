@@ -9,36 +9,40 @@ function HomePage() {
   return (
     <div>
     <Navbar/>
-    <Link to="/beers">
-      <div>
+    <div>
+      <Link to="/beers">
       <img className="images" src={beersImg} alt={beersImg} />
         <h1>All Beers</h1>
+        </Link>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
           Vivamus pharetra egestas lectus, sit amet eleifend ex tincidunt in. Nam dictum arcu ut dignissim varius.
         </p>
       </div>
-    </Link>
-    <Link to="/random-beer">
+   
+    
       <div>
+      <Link to="/random-beer">
       <img className="images" src={randomBeerImg} alt={randomBeerImg} />
         <h1>Random Beer</h1>
+        </Link>
         <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
           Vivamus pharetra egestas lectus, sit amet eleifend ex tincidunt in. Nam dictum arcu ut dignissim varius. 
         </p>
       </div>
-    </Link>
-    <Link to="/new-beer">
+    
+    
       <div>
+      <Link to="/new-beer">
       <img className="images" src={newBeerImg} alt={newBeerImg} />
         <h1>New Beer</h1>
+        </Link>
         <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
           Vivamus pharetra egestas lectus, sit amet eleifend ex tincidunt in. Nam dictum arcu ut dignissim varius.
         </p>
       </div>
-    </Link>
   </div>
 );
 }
